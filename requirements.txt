@@ -1,5 +1,5 @@
-python 
 torch
 torchvision
 torchmetrics
 tqdm
+wandb
