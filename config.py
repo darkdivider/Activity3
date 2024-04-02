@@ -22,7 +22,7 @@ class resnet50_TL(nn.Module):
         return x
     
 class config:
-    epochs=5
+    epochs=10
     lr=0.1
     batch_size=32
     shuffle=True
@@ -43,3 +43,4 @@ class config:
     optimizer = optim.Adam(model.parameters(), lr=lr)
     model_name='resnet_STL_TF'
     model_file = os.path.join('models', model_name)
+    scheduler=optim.lr_scheduler.StepLR(optimizer,step_size=5,gamma=0.1)
