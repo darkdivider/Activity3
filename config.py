@@ -22,12 +22,12 @@ class resnet50_TL(nn.Module):
         return x
     
 class config:
-    epochs=5
+    epochs=10
     lr=0.1
     batch_size=32
     shuffle=True
     transform=ToTensor()
-    test_frac=0.1
+    test_frac=0.2
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     train_dataset = STL10(root='datasets', split='train',
                       download=True, transform=transform)
@@ -40,6 +40,6 @@ class config:
     metric = torchmetrics.classification.Accuracy(
         task="multiclass", num_classes=10)
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=lr)
+    optimizer = optim.Adadelta(model.parameters(), lr=lr)
     model_name='resnet_STL_TF'
     model_file = os.path.join('models', model_name)
