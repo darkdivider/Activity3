@@ -34,5 +34,6 @@ def train_model(config):
         print(f'Loss: {losses:0.3g} | Accuracy: {acc:0.3g}')
         wandb.log({'accuracy': acc, 'loss':losses})
         config.metric.reset()
+    config.scheduler.step()
     with open(config.model_file, 'wb') as file:
         pickle.dump(config.model,file)

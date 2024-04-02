@@ -43,3 +43,4 @@ class config:
     optimizer = optim.Adadelta(model.parameters(), lr=lr)
     model_name='resnet_STL_TF'
     model_file = os.path.join('models', model_name)
+    scheduler=optim.lr_scheduler.StepLR(optimizer,step_size=5,gamma=0.1)
